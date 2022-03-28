@@ -31,16 +31,11 @@ class authController {
             console.log(e);
             res.status(400).json({message: 'Login error'})
         }
-    }
+    } 
     async getUsers(req, res) {
         try {
             const users = await User.find()
-
             res.json(users)
-            // const userRole = new Role()
-            // const adminRole = new Role({value: "ADMIN"})
-            // await userRole.save()
-            // await adminRole.save()
         } catch (e) {
             console.log(e);
         }
