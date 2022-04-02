@@ -1,5 +1,5 @@
-const User =require("./models/User")
-const Role =require("./models/Role")
+const User = require("./models/User")
+const Role = require("./models/Role")
 const bcrypt = require('bcryptjs')
 const {validationResult } = require('express-validator')
 const jwt = require('jsonwebtoken')
@@ -19,7 +19,7 @@ class authController {
             if (!errors.isEmpty()) {
                 return res.status(400).json({ errors: errors.array() });
             }
-            const {username, password} = req.body
+            const {username, lastname, password, age} = req.body
             const candidate = await User.findOne({username})
             if(candidate) {
                 return res.status(400).json({message: 'User exist'})
@@ -28,7 +28,9 @@ class authController {
             const userRole = await Role.findOne({value: "USER"})
             const user = new User({
                 username: username,
+                lastname: lastname,
                 password: hashPassword,
+                age: age,
                 roles: [userRole.value]
             })
             await user.save()
@@ -61,6 +63,15 @@ class authController {
         try {
             const users = await User.find()
             res.json(users)
+        } catch (e) {
+            console.log(e);
+        }
+    }
+    async deleteUser(req, res) {
+        try {
+            const user = await User.findOne({username: 'иван'})
+            user.deleteOne()
+            res.status(200).json({message: `Пользователь ${user.username} удален`})
         } catch (e) {
             console.log(e);
         }

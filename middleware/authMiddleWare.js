@@ -1,7 +1,7 @@
-const jwt = require('jwt')
+const jwt = require('jsonwebtoken')
 const { secret } = require('../config')
 
-module.exports = (req, res, next) => {
+module.exports = function(req, res, next) {
     if(req.method === "OPTIONS") {
         next()
     }
@@ -16,6 +16,6 @@ module.exports = (req, res, next) => {
         next()
     } catch (e) {
         console.log(e)
-        return res.status(400).json({message: `Ошибка: ${e}`})
+        return res.status(400).json({message: `Пользователь не авторизован`})
     }
 }
