@@ -89,6 +89,7 @@
                     name: ${i.username},
                     lastname: ${i.lastname || '-'},
                     age: ${i.age || '-'}
+                    <button class="deleteUser" onclick="alert('${i.username}')">Удалить</button>
                 </li>`)
             }); 
             document.getElementById('usersList').innerHTML = list.join('')

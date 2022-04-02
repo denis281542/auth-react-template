@@ -69,7 +69,7 @@ class authController {
     }
     async deleteUser(req, res) {
         try {
-            const user = await User.findOne({username: 'иван'})
+            const user = await User.findOne({username})
             user.deleteOne()
             res.status(200).json({message: `Пользователь ${user.username} удален`})
         } catch (e) {
