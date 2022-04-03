@@ -67,11 +67,12 @@ class authController {
             console.log(e);
         }
     }
-    async deleteUser(req, res) {
+    async deleteUser(req, res) { 
         try {
+            const {username} = req.body
             const user = await User.findOne({username})
-            user.deleteOne()
-            res.status(200).json({message: `Пользователь ${user.username} удален`})
+            user.deleteOne() 
+            res.status(200).json({message: `Пользователь ${username} удален`})
         } catch (e) {
             console.log(e);
         }
