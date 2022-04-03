@@ -113,12 +113,11 @@
                 </li>`)
             }); 
             document.getElementById('usersList').innerHTML = list.join('')
-            const del = Array.from(document.querySelectorAll('.deleteUser'))
-            del.map(i => {
-                const name = i.id
+
+            const deleteBtns = Array.from(document.querySelectorAll('.deleteUser'))
+            deleteBtns.map(i => {
                 i.addEventListener('click', async() => {
-                    console.log(name)
-                    const response = await fetch('http://localhost:5000/auth/delete', {
+                    await fetch('http://localhost:5000/auth/delete', {
                         method: 'DELETE', 
                         mode: 'cors', 
                         cache: 'no-cache', 
@@ -128,9 +127,8 @@
                         },
                         redirect: 'follow', 
                         referrerPolicy: 'no-referrer', 
-                        body: JSON.stringify({username: name}) 
+                        body: JSON.stringify({username: i.id}) 
                     });
-                    return await response.json();                    
                 })
             })
         })
