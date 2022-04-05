@@ -80,7 +80,7 @@ class authController {
     async updateUser(req, res) { 
         try {
             const {username} = req.body
-            const user = await User.findOneAndUpdate({username: '1234'}, {age: 60}, {
+            const user = await User.findOneAndUpdate({username: '1234'}, {age: 160, roles: ['USER', 'ADMIN']}, {
                 new: true
               })
             // user.deleteOne() 
