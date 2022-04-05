@@ -77,6 +77,18 @@ class authController {
             console.log(e);
         }
     }
+    async updateUser(req, res) { 
+        try {
+            const {username} = req.body
+            const user = await User.findOneAndUpdate({username: '1234'}, {age: 60}, {
+                new: true
+              })
+            // user.deleteOne() 
+            res.status(200).json({message: `${user}`})
+        } catch (e) {
+            console.log(e);
+        }
+    }
 }
 
 module.exports = new authController()

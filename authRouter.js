@@ -14,5 +14,7 @@ router.post('/registration', [
 router.post('/login', controller.login)
 router.delete('/delete', controller.deleteUser)
 router.get('/users', controller.getUsers)
+router.put('/user', controller.updateUser)
+
 
 module.exports = router

@@ -66,21 +66,18 @@
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
-            })
-            .then(response => response.json())
-            .then((json) => console.log(json));    
-
-
+        })
+        .then(response => response.json())
+        .then((json) => console.log(json));    
         // reset formData
         name.value = ''
         lastname.value = ''
         password.value = ''
         age.value = ''
     }
-
     registerBtn.addEventListener('click', register)
 
-
+    // get users list
     const users = fetch('http://localhost:5000/auth/users')
         .then(response => response.json())
         .then(json => {
@@ -91,12 +88,12 @@
                     lastname: ${i.lastname || '-'},
                     age: ${i.age || '-'}
                     <button class="deleteUser" id=${i.username} onclick=>Удалить</button>
+                    <button class="editUser" id=${i.username} onclick=>Редактировать</button>
                 </li>`)
             }); 
-
     document.getElementById('usersList').innerHTML = list.join('')
 
-
+    // buttons delete user 
     const deleteBtns = Array.from(document.querySelectorAll('.deleteUser'))
     deleteBtns.map(i => {
         i.addEventListener('click', async() => {
@@ -112,7 +109,9 @@
                 referrerPolicy: 'no-referrer', 
                 body: JSON.stringify({username: i.id}) 
             })})
-        })
     })
+    const editBtns = Array.from(document.querySelectorAll('.editUser'))
+    console.log(editBtns);
+})
 </script>
 </html>
