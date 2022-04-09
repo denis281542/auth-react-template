@@ -69,6 +69,17 @@
         })
         .then(response => response.json())
         .then((json) => console.log(json));    
+        
+        document.getElementById('usersList').innerHTML += (`
+        <li>
+            name: ${name.value},
+            lastname: ${lastname.value},
+            age: ${age.value}
+            <button class="deleteUser" id="123" onclick="">Удалить</button>
+            <button class="editUser" id="123" onclick="">Редактировать</button>
+        </li>
+        `)
+
         // reset formData
         name.value = ''
         lastname.value = ''
