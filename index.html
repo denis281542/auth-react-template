@@ -97,7 +97,7 @@
     const deleteBtns = Array.from(document.querySelectorAll('.deleteUser'))
     deleteBtns.map(i => {
         i.addEventListener('click', async() => {
-            await fetch('http://localhost:5000/auth/delete', {
+            await fetch(`http://localhost:5000/auth/user/${i.id}`, {
                 method: 'DELETE', 
                 mode: 'cors', 
                 cache: 'no-cache', 
@@ -112,8 +112,8 @@
     })
     const editBtns = Array.from(document.querySelectorAll('.editUser'))
     editBtns.map(i => i.addEventListener('click', async() => {
-        console.log(i)
-        await fetch('http://localhost:5000/auth/user', {
+        console.log(i.id)
+        await fetch(`http://localhost:5000/auth/user/${i.id}`, {
                 method: 'PUT', 
                 mode: 'cors', 
                 cache: 'no-cache', 
@@ -123,7 +123,7 @@
                 },
                 redirect: 'follow', 
                 referrerPolicy: 'no-referrer', 
-                body: JSON.stringify({username: i.id, lastname: '456', age: '777'}) 
+                body: JSON.stringify({lastname: '456', age: '777'}) 
             })
     }))
 })

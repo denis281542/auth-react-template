@@ -69,8 +69,9 @@ class authController {
     }
     async deleteUser(req, res) { 
         try {
+            const {id} = req.params
             const {username} = req.body
-            const user = await User.findOne({username})
+            const user = await User.findOne({username: id})
             user.deleteOne() 
             res.status(200).json({message: `Пользователь ${username} удален`})
         } catch (e) {
@@ -79,12 +80,13 @@ class authController {
     }
     async updateUser(req, res) { 
         try {
-            const {username, lastname, age} = req.body
-            const user = await User.findOneAndUpdate({username}, {lastname, age}, {
+            const {id} = req.params
+            const {lastname, age} = req.body
+            const user = await User.findOneAndUpdate({username: id}, {lastname: '123', age: '77'}, {
                 new: true
               })
             // user.deleteOne() 
-            res.status(200).json({message: `${user.lastname}`})
+            res.status(200).json({message: `${id  }`})
         } catch (e) {
             console.log(e);
         }
