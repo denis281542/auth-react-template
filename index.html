@@ -111,7 +111,21 @@
             })})
     })
     const editBtns = Array.from(document.querySelectorAll('.editUser'))
-    console.log(editBtns);
+    editBtns.map(i => i.addEventListener('click', async() => {
+        console.log(i)
+        await fetch('http://localhost:5000/auth/user', {
+                method: 'PUT', 
+                mode: 'cors', 
+                cache: 'no-cache', 
+                credentials: 'same-origin', 
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                redirect: 'follow', 
+                referrerPolicy: 'no-referrer', 
+                body: JSON.stringify({username: i.id, lastname: '456', age: '777'}) 
+            })
+    }))
 })
 </script>
 </html>

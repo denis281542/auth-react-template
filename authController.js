@@ -79,12 +79,12 @@ class authController {
     }
     async updateUser(req, res) { 
         try {
-            const {username} = req.body
-            const user = await User.findOneAndUpdate({username: '1234'}, {age: 160, roles: ['USER', 'ADMIN']}, {
+            const {username, lastname, age} = req.body
+            const user = await User.findOneAndUpdate({username}, {lastname, age}, {
                 new: true
               })
             // user.deleteOne() 
-            res.status(200).json({message: `${user}`})
+            res.status(200).json({message: `${user.lastname}`})
         } catch (e) {
             console.log(e);
         }
